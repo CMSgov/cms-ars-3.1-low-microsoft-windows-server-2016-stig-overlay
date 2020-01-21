@@ -564,11 +564,15 @@ include_controls 'microsoft-windows-server-2016-stig-baseline' do
   end
   control 'V-73595' do
     impact 0
-    desc 'caveat', 'Not applicable for this CMS ARS 3.1 overlay, since the related security control is not mandatory in CMS ARS 3.1'
+    tag "cci": ["CCI-000068", "CCI-002890", "CCI-003123"]
+    tag "nist": ["AC-17 (2)", "MA-4 (6)", "MA-4 (6)", "Rev_4"]
+    desc 'caveat', 'Not applicable for this CMS ARS 3.1 overlay, since the related security control is not applied to this system categorization in CMS ARS 3.1'
   end
   control 'V-73601' do
     impact 0
-    desc 'caveat', 'Not applicable for this CMS ARS 3.1 overlay, since the related security control is not mandatory in CMS ARS 3.1'
+    tag "cci": ["CCI-000068", "CCI-002890", "CCI-003123"]
+    tag "nist": ["AC-17 (2)", "MA-4 (6)", "MA-4 (6)", "Rev_4"]
+    desc 'caveat', 'Not applicable for this CMS ARS 3.1 overlay, since the related security control is not applied to this system categorization in CMS ARS 3.1'
   end
   control 'V-73603' do
     impact 0
