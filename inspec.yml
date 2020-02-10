@@ -11,7 +11,7 @@ depends:
 - name: microsoft-windows-server-2016-stig-baseline
   path: ../microsoft-windows-server-2016-stig-baseline
 
-attributes:
+inputs:
   - name: backup_operators
     description: 'List of authorized users in the Backup Operators Group'
     default: []
