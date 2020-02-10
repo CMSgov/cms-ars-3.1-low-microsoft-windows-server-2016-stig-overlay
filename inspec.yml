@@ -12,35 +12,50 @@ depends:
   path: ../microsoft-windows-server-2016-stig-baseline
 
 attributes:
-  - name: shared_accounts
-    type: array
-    description: 'List of shared accounts on the system'
-    default: []
-
   - name: backup_operators
-    type: array
     description: 'List of authorized users in the Backup Operators Group'
     default: []
 
   - name: administrators
-    type: array
     description: 'List of authorized users in the local Administrators group'
-    default: []
-    
-  - name: administrators_domain'
-    type: array
+    default: ["Admn",
+            "Domain Admins",
+            "Enterprise Admins"]
+
+  - name: administrators_domain
     description: 'List of authorized users in the local Administrators domain group'
-    default: []
+    default: ["Admn",
+            "Domain Admins",
+            "Enterprise Admins"]
 
   - name: temp_account
-    type: array
     description: 'List of temporary accounts on the system'
     default: []
 
   - name: emergency_account
-    type: array
     description: 'List of emergency accounts on the system'
     default: []
+
+  - name: administrator_domain_group
+    description: 'List of authorized users in the local Administrators domain group'
+    default: ["Admn"]
+
+  - name: shared_accounts
+    description: 'List of shared accounts on the system'
+    default: []
+
+  - name: has_ftp_server_role
+    description: 'Set to true server has the ftp server role'
+    type: boolean
+    default: true
+
+  - name: forrest
+    description: 'Domain Controller forrest name'
+    default: 'dc=testing, dc=com'
+
+  - name: admin_account
+    description: 'Default administator account'
+    default: 'admn'
 
   - name: LegalNoticeCaption
     type: string
