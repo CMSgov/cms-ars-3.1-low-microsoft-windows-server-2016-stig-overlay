@@ -14,61 +14,137 @@ depends:
 inputs:
   - name: backup_operators
     description: 'List of authorized users in the Backup Operators Group'
-    default: []
+    type: Array
+    value: []
 
   - name: administrators
     description: 'List of authorized users in the local Administrators group'
-    default: ["Admn",
+    type: Array
+    value: ["Administrator",
             "Domain Admins",
             "Enterprise Admins"]
 
   - name: administrators_domain
     description: 'List of authorized users in the local Administrators domain group'
-    default: ["Admn",
+    type: Array
+    value: ["Administrator",
             "Domain Admins",
             "Enterprise Admins"]
 
   - name: temp_account
     description: 'List of temporary accounts on the system'
-    default: []
+    type: Array
+    value: ["tempuser"]
 
   - name: emergency_account
     description: 'List of emergency accounts on the system'
-    default: []
+    type: Array
+    value: []
 
   - name: administrator_domain_group
     description: 'List of authorized users in the local Administrators domain group'
-    default: ["Admn"]
+    type: Array
+    value: ["Administrator"]
 
   - name: shared_accounts
     description: 'List of shared accounts on the system'
-    default: []
+    type: Array
+    value: []
 
   - name: has_ftp_server_role
     description: 'Set to true server has the ftp server role'
-    type: boolean
-    default: true
+    type: Boolean
+    value: true
 
   - name: forrest
     description: 'Domain Controller forrest name'
-    default: 'dc=testing, dc=com'
+    type: String
+    value: 'dc=testdomain, dc=com'
 
   - name: admin_account
     description: 'Default administator account'
-    default: 'admn'
+    type: String
+    value: 'Administrator'
 
-  - name: LegalNoticeCaption
-    type: string
-    description: 'Legal caption text for banners'
-    default: '-= WARNING =- -= WARNING =- -= WARNING =-'
-    
-  - name: LegalNoticeText
-    type: string
-    description: 'Legal notice text for banners'
-    default: '* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
+  - name: is_AD_only_system
+    description: 'Set to true if the system is dedicated to the management of Active Directory'
+    type: Boolean
+    value: false
+
+  - name: legal_notice_text
+    description: 'Standard Legal Notice Text shown to the user on login'
+    type: String
+    value: '* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
               *     This system is provided for Government-authorized use only.
               *     Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
               *     Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
               *     By using this system, you understand and consent to the following:
               -     The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
               -     Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose.'
+
+  - name: legal_notice_caption
+    description: 'Standard Legal Notice Caption to go along with the Standard Legal Notice Text'
+    type: String
+    value: '-= WARNING =- -= WARNING =- -= WARNING =-'
+    
+      - name: max_conn_idle_time
+    description: 'Maximum connectivity time to directory server in seconds'
+    type: Numeric
+    value: 300
+
+  - name: is_unclassified_system
+    description: 'Set flag to true if the target system is unclassified'
+    type: Boolean
+    value: true
+
+  - name: dod_certificates
+    description: 'List of DoD Interoperability Root Certificates'
+    type: Array
+    value: [
+      {
+        "Subject": "CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Issuer": "CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Thumbprint": "FFAD03329B9E527A43EEC66A56F9CBB5393E6E13",
+        "NotAfter": "Sunday, September 23, 2018"
+      },
+      {
+        "Subject": "CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Issuer": "CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Thumbprint": "FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4",
+        "NotAfter": "Sunday, February 17, 2019"
+      },
+      {
+        "Subject": "CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Issuer": "CN=DoD Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Thumbprint": "22BBE981F0694D246CC1472ED2B021DC8540A22F",
+        "NotAfter": "Friday, September 06, 2019"
+      }
+    ]
+
+  - name: dod_cceb_certificates
+    description: 'List of DoD Interoperability Root Certificates'
+    type: Array
+    value: [
+      {
+        "Subject": "CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Issuer": "CN=US DoD CCEB Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Thumbprint": "DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3",
+        "NotAfter": "Saturday, March 09, 2019"
+      },
+      {
+        "Subject": "CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Issuer": "CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US",
+        "Thumbprint": "929BF3196896994C0A201DF4A5B71F603FEFBF2E",
+        "NotAfter": "Friday, September 27, 2019"
+      }
+    ]
+    
+  - name: built_in_admin_account
+    description: 'Default account name for Built-In Administrator'
+    type: String
+    value: "Administrator"
+
+  - name: manually_managed_app_service_accounts
+    description: 'A list of all manually managed Application and Service account names'
+    type: Array
+    value: []
